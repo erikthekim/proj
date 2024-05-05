@@ -74,3 +74,5 @@ gem "devise", "~> 4.9"
 gem "font-awesome-sass", "~> 6.5.1"
 
 gem "launchy", "~> 3.0"
+
+gem "followability", "~> 1.1"
