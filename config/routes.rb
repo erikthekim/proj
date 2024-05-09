@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   resources :parties do
     member do
       patch :increment_interest
+      post 'upvote'
+      post 'downvote'
     end
   end
   # config/routes.rb

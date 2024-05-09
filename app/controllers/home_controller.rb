@@ -64,24 +64,24 @@ class HomeController < ApplicationController
         format.json { head :no_content }
       end
     end
-    def increment_interest
-      @party = Party.find(params[:id])
-      vote = current_user.user_votes.find_or_initialize_by(party: @party)
-    
-      if vote.new_record?
-        vote.save
-        @party.increment!(:interest_count)
-        message = 'Thank you for your interest!'
-      else
-        vote.destroy
-        @party.decrement!(:interest_count)
-        message = 'Your interest has been removed.'
-      end
-    
-      render json: { success: true, newInterestCount: @party.interest_count, message: message }
-    rescue => e
-      render json: { success: false, message: e.message }, status: :unprocessable_entity
+    # app/controllers/home_controller.rb
+def increment_interest
+  @admin_party = Party.find(params[:id])
+  
+  respond_to do |format|
+    if current_user.voted_parties.include?(@admin_party)
+      format.html { redirect_to request.referer || root_path, alert: 'You have already shown interest in this party.' }
+      format.js { render js: "alert('You have already shown interest in this party.');" }
+    else
+      current_user.user_votes.create(party: @admin_party)
+      @admin_party.increment!(:interest_count)
+      
+      format.html { redirect_to root_path }
+      format.js   
     end
+  end
+end
+
     
 
     

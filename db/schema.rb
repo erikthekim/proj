@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_08_060301) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_09_233054) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
-    t.string "encrypted_password"
+    t.string "password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -41,7 +42,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_060301) do
     t.integer "interest_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.
+    t.datetime "time"
+    t.string "host"
+    t.boolean "alcohol_available", default: false
+    t.index ["host"], name: "index_parties_on_host"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -50,6 +54,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_060301) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_votes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "party_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "vote_type", default: "up"
+    t.index ["party_id"], name: "index_user_votes_on_party_id"
+    t.index ["user_id"], name: "index_user_votes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,4 +91,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_060301) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_votes", "parties"
+  add_foreign_key "user_votes", "users"
 end
