@@ -1,0 +1,5 @@
+<%=if current_user&.following?(user)%>
+    <%= button_to "unfollow", unfollow_path(user)%>
+<%= else%>
+    <%=button_to "follow", follow_path(user)%>
+<%=end%>

@@ -1,2 +1,4 @@
 module PartiesHelper
+
+
 end

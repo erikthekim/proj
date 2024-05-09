@@ -1,0 +1,22 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @admin_report %>
+    <!-- app/views/parties/show.html.erb -->
+<p><strong>Time:</strong> <%= @admin_report.time.strftime("%B %d, %Y %H:%M") %></p>
+<p><strong>Host:</strong> <%= @admin_report.host %></p>
+<p><strong>Alcohol Available:</strong> <%= @admin_report.alcohol_available ? 'Yes' : 'No' %></p>
+
+<!-- And similar updates for the index view -->
+
+
+    <%= link_to "Edit this report", edit_admin_report_path(@admin_report), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this report", admin_report_path(@admin_report), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to "Back to parties", admin_parties_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>

@@ -36,6 +36,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /admin/users/1 or /admin/users/1.json
   def update
+ 
     respond_to do |format|
       if @user.update(admin_user_params)
         format.html { redirect_to admin_user_url(@user), notice: "User was successfully updated." }
@@ -56,15 +57,17 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def set_user
+   
+    @user = User.find_by!(name: params[:id])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+    
 
     # Only allow a list of trusted parameters through.
     def admin_user_params
-      params.require(:user).permit(:name, :encrypted_password, :bio, :email)
+      params.require(:user).permit(:name, :password, :bio, :email, :role, :avatar)
     end
 end

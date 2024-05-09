@@ -17,6 +17,14 @@ class Users::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  def after_sign_in_path_for(resource)
+    if resource.try(:admin?)
+      admin_root_path # Redirect to the admin dashboard if the user is an admin
+    else
+      root_path  # Otherwise use the default path
+    end
+  end
+  
 
   # protected
 
@@ -25,3 +33,6 @@ class Users::SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   end
 end
+
+
+

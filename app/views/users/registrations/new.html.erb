@@ -38,7 +38,11 @@
     <div class="mt-6 text-center">
       <%= render "users/shared/links" do %>
         <%= link_to "Sign in", new_session_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+
       <% end %>
+
+      <%= link_to "Back to Home", root_path, class: "mt-4 inline-block bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
     </div>
   </div>
 </div>

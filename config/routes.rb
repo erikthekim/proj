@@ -1,43 +1,59 @@
 Rails.application.routes.draw do
-  get 'profiles/show'
+  # Devise routes for users and admins using the same controllers
   devise_for :users, controllers: {
-  registrations: 'users/registrations',
-  sessions: 'users/sessions',
-  passwords: 'users/passwords'
-}
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
+  devise_for :admins, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords'
+  }
 
-      
+  # Admin namespace
   namespace :admin do
     resources :posts
     resources :users
+    resources :reports, only: [:index, :show, :destroy]
+    resources :parties do
+      member do
+        patch :increment_interest
+      end
+    end
+    # Direct admin root, simplifies the authenticated block below
   end
+
+  # General Resources
   resources :profiles
   resources :users
-  resources :parties
-  post 'follow/:id', to: 'follows#follow', as: :follow
-  post 'unfollow/:id', to: 'follows#unfollow', as: :unfollow
-  devise_for :admins
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  root "home#index"
-  # config/routes.rb
   resources :parties do
     member do
       patch :increment_interest
     end
   end
+  # config/routes.rb
+  resources :reports
 
 
-  authenticated :admin_user do 
-    root to: "admin#index", as: :admin_root
-
-  end
   
+  # Follow and unfollow routes
+  post 'follow/:id', to: 'follows#follow', as: :follow
+  post 'unfollow/:id', to: 'follows#unfollow', as: :unfollow
 
-  get "admin" => "admin#index"
+  # Health check route
+  get "up", to: "rails/health#show", as: :rails_health_check
+  get 'users/:name', to: 'users#show', as: :user_profile
+
+  # Root path
+  root to: "home#index"
+
+  # Authenticated block for admin redirect to admin dashboard
+  authenticated :user, ->(user) { user.admin? } do
+    get '/admin', to: "admin#index", as: :admin_root
+  end
+
+  # Redirects for compatibility or redirection logic
+  get '/admin', to: redirect('/admins/sign_in')
+  get '/admins/sign_in', to: redirect('/users/sign_in')
 end

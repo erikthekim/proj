@@ -4,11 +4,11 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Parties</h1>
-    <%= link_to "New party", new_party_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl">Reports</h1>
+    
   </div>
 
   <div id="parties" class="min-w-full">
-    <%= render @parties %>
+    <%= render @admin_reports %>
   </div>
 </div>

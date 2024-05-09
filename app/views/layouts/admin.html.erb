@@ -6,7 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -19,8 +18,9 @@
             <h1 class="text-md py-2 text-white font-bold hidden md:block">Headcount Admin</h1>
           </div>
           <ul class="flex flex-col text-white">
+            <!-- Existing Navigation Items -->
             <li>
-              <%= link_to admin_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+              <%= link_to admin_root_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
                 <%= icon('fa-solid', 'gauge-high', class: 'mr-2') %> <span class="hidden md:inline-block">Dashboard</span>
               <% end %>
             </li>
@@ -30,13 +30,19 @@
               <% end %>
             </li>
             <li>
-              <%= link_to admin_posts_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
-                <%= icon('fa-solid', 'folder', class: 'mr-2') %> <span class="hidden md:inline-block">Posts</span>
+              <%= link_to admin_reports_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'folder', class: 'mr-2') %> <span class="hidden md:inline-block">Reports</span>
               <% end %>
             </li>
             <li>
-              <%= link_to admin_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
-                <%= icon('fa-solid', 'bell', class: 'mr-2') %> <span class="hidden md:inline-block">Messages</span>
+              <%= link_to admin_parties_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'folder', class: 'mr-2') %> <span class="hidden md:inline-block">Parties</span>
+              <% end %>
+            </li>
+            <!-- Back to Home Button -->
+            <li>
+              <%= link_to root_path, class: "block px-4 py-2 hover:rounded hover:bg-blue-500" do %>
+                <%= icon('fa-solid', 'house', class: 'mr-2') %> <span class="hidden md:inline-block">Home</span>
               <% end %>
             </li>
             <li>

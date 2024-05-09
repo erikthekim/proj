@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PartiesControllerTest < ActionDispatch::IntegrationTest
+class Admin::PartiesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @party = parties(:one)
   end

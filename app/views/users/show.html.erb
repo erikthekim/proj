@@ -1,0 +1,55 @@
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-gray-800 p-4 flex justify-between items-center">
+        <h2 class="text-3xl font-semibold text-white">Profile</h2>
+        <%= link_to 'Home', root_path, class: "text-blue-400 hover:text-blue-500" %>
+      </div>
+      <div class="p-4">
+        <div class="flex flex-col items-center pb-10">
+          <img class="mb-3 w-24 h-24 rounded-full shadow-lg" src="https://via.placeholder.com/150" alt="Profile image">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-1"><%= @user.name %></h3>
+          <span class="text-sm text-gray-600"><%= @user.email %></span>
+          <p class="text-md text-gray-800 mt-2 text-center"><%= @user.bio %></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <% if current_user.name == @user.name %>
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-4">
+      <%= form_with(model: @user, url: user_path(@user), method: :put, local: true, html: { multipart: true }) do |form| %>
+
+
+        <div class="space-y-4">
+          <div>
+            <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_field :name, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" %>
+          </div>
+          <div>
+            <%= form.label :email, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.email_field :email, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" %>
+          </div>
+          <div>
+            <%= form.label :bio, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.text_area :bio, rows: 3, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" %>
+          </div>
+          <div>
+            <%= form.label :avatar, "Upload Picture", class: "block text-sm font-medium text-gray-700" %>
+            <%= form.file_field :avatar, accept: 'image/*', class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" %>
+          </div>
+          <div>
+            <%= form.submit "Update Profile", class: "cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+          </div>
+        </div>
+      <% end %>
+
+
+      
+    </div>
+  </div>
+  <% end %>
+</body>
