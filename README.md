@@ -1,24 +1,76 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Project Name: Headcount
 
-Things you may want to cover:
+## Description
+Headcount is a Ruby on Rails application designed to manage party events where users can post about upcoming parties, vote on them, and view party details. Administrators can manage posts and user activities.
 
-* Ruby version
+## Features
+- **User Authentication:** Allows users to sign up, log in, and log out.
+- **Party Management:** Users can create, update, and delete party posts.
+- **Voting System:** Users can vote on parties to show interest.
+- **Admin Dashboard:** Admins can view, edit, and delete all user posts and manage user accounts.
 
-* System dependencies
+## Technology Stack
+- **Framework:** Ruby on Rails
+- **Database:** PostgreSQL
+- **Frontend:** HTML, CSS, JavaScript, Tailwind CSS
+- **Testing:** RSpec
 
-* Configuration
+## Installation
 
-* Database creation
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/headcount.git
+   cd headcount
+   ```
 
-* Database initialization
+2. **Install dependencies**
+   ```bash
+   bundle install
+   ```
 
-* How to run the test suite
+3. **Set up the database**
+   ```bash
+   rails db:create
+   rails db:migrate
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+4. **Start the server**
+   ```bash
+   rails server
+   or
+   bin/dev 
+   ```
 
-* Deployment instructions
+5. **Visit the application**
+   Open `http://localhost:3000` in your browser.
 
-* ...
+## Configuration
+Ensure that your database and other environment-specific settings are configured in the `config/database.yml` and `config/secrets.yml` files respectively.
+
+## Usage
+After starting the server, you can:
+- Register a new user account.
+- Log in with existing credentials.
+- Create, update, or delete party posts.
+- Vote on parties.
+- Access the admin dashboard if you have admin credentials.
+
+## Testing
+Run the following command to execute tests:
+```bash
+rspec
+```
+
+## Contributing
+Contributions are welcome. Please fork the repository and open a pull request with your features or fixes.
+
+## License
+This project is licensed under the KENYON License - see the [LICENSE.md](LICENSE) file for details.
+
+---
+
+### Notes
+- **Customize the Template:** Modify the contents to match the specifics of your project. If there are special requirements or additional setup steps, make sure to include them.
+- **GitHub Features:** If you are hosting the repository on GitHub, take advantage of Markdown features like badges for build status, dependency versions, etc.
+- **Licensing:** Be sure to choose a license that matches your project's needs. The MIT license is commonly used for open source projects, but your requirements might differ.
