@@ -1,5 +1,5 @@
 
-# Project Name: Headcount
+#  Headcount
 
 ## Description
 Headcount is a Ruby on Rails application designed to manage party events where users can post about upcoming parties, vote on them, and view party details. Administrators can manage posts and user activities.
@@ -55,20 +55,6 @@ After starting the server, you can:
 - Create, update, or delete party posts.
 - Vote on parties.
 - Access the admin dashboard if you have admin credentials.
-
-## Testing
-Run the following command to execute tests:
-```bash
-rspec
-```
-
-## Contributing
-Contributions are welcome. Please fork the repository and open a pull request with your features or fixes.
-
-## License
-This project is licensed under the KENYON License - see the [LICENSE.md](LICENSE) file for details.
-
----
 
 ### Notes
 - **Customize the Template:** Modify the contents to match the specifics of your project. If there are special requirements or additional setup steps, make sure to include them.
