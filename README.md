@@ -14,7 +14,6 @@ Headcount is a Ruby on Rails application designed to manage party events where u
 - **Framework:** Ruby on Rails
 - **Database:** SQLite3
 - **Frontend:** HTML, CSS, JavaScript, Tailwind CSS
-- **Testing:** RSpec
 
 ## Installation
 
